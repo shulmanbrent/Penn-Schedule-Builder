@@ -12,7 +12,7 @@ def main():
 
 @app.route("/scheduler")
 def scheduler():
-	return render_template("pricing.html")
+	return render_template("scheduler.html")
 
 
 if __name__ == '__main__':
