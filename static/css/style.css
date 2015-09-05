@@ -1384,12 +1384,12 @@ h3.heading-progress {
 }
 
 .pricing-rate {
-  padding: 30px 10px;
+/*  padding: 30px 10px;*/
   background-color: #0FAF97;
   text-align: center;
 }
 
-.pricing-rate h1 {
+.pricing-rate h4 {
   color: #FFF;
   margin: 0px;
 }
