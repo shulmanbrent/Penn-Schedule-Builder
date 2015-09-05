@@ -22,7 +22,6 @@
         <link href="assets/css/flexslider.css" rel="stylesheet">
         <!--animated  css-->
         <link href="assets/css/animate.css" rel="stylesheet">
-
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
           <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -31,10 +30,23 @@
 
     </head>
     <body>
-
         <header class="header-main">
+            <div class="top-bar">
 
-            <div class="navbar navbar-default" role="navigation">
+                <div class="container">
+                    <ul class="info list-inline pull-left hidden-xs">
+                        <li><a href="#" class="hover-color"><i class="ion-ios-email-outline"></i> mail@domain.com</a></li>
+                        <li><i class="ion-iphone"></i> +91 (123) 456 78 90</li>
+                    </ul>  
+                    <div class="pull-right">
+                        <ul class="info list-inline hidden-xs">
+                            <li><a href="#" class="hover-color">Create an account?</a></li>
+                            <li><a href="#" class="hover-color"><i class="ion-man"></i> Login</a></li>
+                        </ul>
+                    </div>
+                </div><!--container end-->
+            </div><!--topbar end-->
+               <div class="navbar navbar-default sticky-nav sticky" role="navigation">
                 <div class="container">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -48,11 +60,11 @@
                     <div class="navbar-collapse collapse">
 
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="active dropdown">
+                            <li class=" dropdown">
                                 <a href="#" class="dropdown-toggle js-activated" data-toggle="dropdown">Home</a> 
-                                <ul class="dropdown-menu">
+                               <ul class="dropdown-menu">
                                     <li><a href="index.html">Home - Default</a></li>
-                                    <li><a href="home-master.html">Home - Master Slider <span class="badge">Hot</span></a></li>
+                                     <li><a href="home-master.html">Home - Master Slider <span class="badge">Hot</span></a></li>
                                     <li><a href="home-animation.html">Home - Animations</a></li>
                                     <li><a href="home-boxed.html">Home boxed</a></li>
                                     <li class="dropdown-submenu">
@@ -89,7 +101,7 @@
                                     <li><a href="blog-post.html">Blog Post</a></li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
+                            <li class="dropdown active">
                                 <a href="#" class="dropdown-toggle js-activated" data-toggle="dropdown">Features</a>
                                 <ul class="dropdown-menu">
                                     <li><a href="typography.html">Typography</a></li>
@@ -122,8 +134,9 @@
                     </div><!--/.nav-collapse -->
                 </div><!--/.container-->
             </div><!--navigation end-->
-
         </header><!--header main end-->
+
+
 
 
         <section id="slider-sec" class="slider-reg">
@@ -139,7 +152,6 @@
                                     <p>
                                         Bizwrap theme comes with easy customization
                                     </p>
-                                    <p class="slide-btn"><a href="#" class="btn btn-white btn-lg">Purchase Now</a></p>
                                 </div>
                             </figcaption>
                         </figure>
@@ -153,7 +165,6 @@
                                     <p>
                                         Bizwrap is a Useful theme that you can use for your Business.
                                     </p>
-                                    <p class="slide-btn"><a href="#" class="btn btn-white btn-lg">View Portfolio</a></p>
                                 </div>
                             </figcaption>
                         </figure>
@@ -163,11 +174,10 @@
                             <img src="assets/img/img-3.jpg" class="img-responsive" alt="slider-img-1">
                             <figcaption class="slider-overlay">
                                 <div class="slider-text">
-                                    <h1>Perfect for Small Projects</h1>
+                                    <h1>Built with bootstrap3</h1>
                                     <p>
-                                        Bizwrap mainly design for small business projects.
+                                        We used the latest technologies to create an amazing theme.
                                     </p>
-                                    <p class="slide-btn"><a href="#" class="btn btn-white btn-lg">Contact us</a></p>
                                 </div>
                             </figcaption>
                         </figure>
@@ -178,12 +188,12 @@
         <div class="space-50"></div>
         <div class="container">
             <div class="row">
-                <div class="col-md-12 text-center wow animated fadeInUp">
-                    <h2>Bizwrap built for Minimal business Projects</h2>
-                    <h3 class="subtitle">With Clean and Modern Design</h3>
+                <div class="col-md-12 text-center">
+                    <h2>Bizwrap fully responsive layout built with HTML5 CSS3</h2>
+                    <h3 class="subtitle">With easy customization</h3>
                 </div>
                 <div class="space-70"></div>
-                <div class=" col-sm-4">
+                <div class="col-md-3 col-sm-6">
                     <div class="services-box">
                         <i class="ion-laptop"></i>
                         <h1>Responsive design</h1>
@@ -192,19 +202,28 @@
                         </p>
                     </div>
                 </div><!--services box-->
-                <div class=" col-sm-4">
+                <div class="col-md-3 col-sm-6">
                     <div class="services-box">
-                        <i class="ion-ios-color-wand-outline"></i>
+                        <i class="ion-beaker"></i>
                         <h1>Creative ideas</h1>
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque nisl risus, porta sit amet dui eget...
                         </p>
                     </div>
                 </div><!--services box-->
-                <div class="col-sm-4">
+                <div class="col-md-3  col-sm-6">
                     <div class="services-box">
-                        <i class="ion-social-twitter-outline"></i>
+                        <i class="ion-social-twitter"></i>
                         <h1>Bootstrap3</h1>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque nisl risus, porta sit amet dui eget...
+                        </p>
+                    </div>
+                </div><!--services box-->
+                <div class="col-md-3  col-sm-6">
+                    <div class="services-box">
+                        <i class="ion-thumbsup"></i>
+                        <h1>24/7 support</h1>
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque nisl risus, porta sit amet dui eget...
                         </p>
@@ -355,8 +374,18 @@
                                 </p>
                             </div>
                         </div><!--services list-->
-
-
+                        <div class="space-30"></div>
+                        <div class="row">
+                            <div class="col-md-3 services-icon">
+                                <i class="ion-social-twitter"></i>
+                            </div>
+                            <div class="col-md-9 services-text">
+                                <h4 class="heading-mini">Bootstrap3</h4>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ut ipsum mauris. Fusce condimentum mollis eros vitae facilisis. 
+                                </p>
+                            </div>
+                        </div><!--services list-->
                     </div>
                     <div class="col-md-5">
                         <img src="assets/img/ipad.png" class="img-responsive" alt="">
@@ -365,35 +394,7 @@
 
             </div><!--container-->
         </section><!--features end-->
-         
-        <section id="content-region-2" class="padding-40 parallax-1">
-
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <div class="testimonials">
-                            <ul class="slides">
-                                <li>
-                                    <p class="testi-text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent faucibus massa in mauris rhoncus aliquam. Suspendisse nec velit vestibulum, euismod quam id, pellentesque elit. Ut a interdum metus, vel dictum nibh."<p>
-                                        <span class="testi-person">John Doe - company inc  </span>
-                                </li>
-                                <li>
-                                    <p class="testi-text">"Sed fringilla sem sed massa ullamcorper, vitae rutrum justo sodales. Cras sed iaculis enim. Sed aliquet viverra nisl a tristique. Curabitur vitae mauris sem. Pellentesque iaculis nibh leo, mattis aliquet arcu tincidunt at."<p>
-                                        <span class="testi-person">John terry - company inc  </span>
-                                </li>
-                                <li>
-                                    <p class="testi-text">"Cras adipiscing odio nunc, non laoreet urna suscipit ac. Pellentesque congue egestas risus viverra pharetra. Morbi pretium orci magna, vitae mattis nisl viverra eleifend. Vestibulum euismod erat non ligula hendrerit tincidunt."<p>
-                                        <span class="testi-person">victoria - company inc </span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section> <!--testimonials section end here-->
         <div class="space-70"></div>
-
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -452,91 +453,96 @@
             </div><!--row end-->
         </div><!--container recent news end-->
         <div class="space-50"></div>
-        <div class="cta-bg">
-            <div class="container text-center">
-                <h3>Simple and Minimal Design
-                    <a href="#" class="btn btn-lg btn-white btn-radius">Purchase Now</a>
-                </h3>
-            </div>
-        </div>
-        <div id="footer">
+
+        <footer id="footer-option">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-4 margin-btm-20">
+                    <div class="col-md-3 margin-btm-20">
                         <div class="footer-col">
-                            <h3>Bizwrap</h3>
-                            <p>
-                                aliqua.adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna. aliqua.adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.
+                            <h3>Newsletter</h3>
+                            <p class="margin-btm-20">
+                                Keep up on our always evolving Future updates. Enter your e-mail and subscribe to our newsletter.
                             </p>
+                            <form>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="input-group">
+                                            <label class="sr-only" for="subscribe-email">Email address</label>
+                                            <input type="email" class="form-control" id="subscribe-email" placeholder="Enter your email">
+                                            <span class="input-group-btn">
+                                                <button type="submit" class="btn theme-btn-color">Go!</button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                        <div class="space-20"></div>
+                    </div><!--footer col end-->
+                    <div class="col-md-3 margin-btm-20">
+                        <div class="footer-col margin-btm-20">
+                            <h3>Latest tweet</h3>
+                            <a href="#" class="tweet-ac hover-color">@rakesh_wd</a>
+                            <div class="tweet-desc">
+                                <i class="ion-social-twitter"></i>Bizwrap is right choice for your business project.its comes with new features and update in every month.
+                            </div>
+                            <a href="#" class="hover-color tweet-day">50 min ago</a>
+                            <hr>
+                        </div>
+                        <div class="footer-col">
+                            <a href="#" class="tweet-ac hover-color">@rakesh_wd</a>
+                            <div class="tweet-desc">
+                                <i class="ion-social-twitter"></i>Bizwrap is right choice for your business project.its comes with new features and update in every month.
+                            </div>
+                            <a href="#" class="hover-color tweet-day">1 day ago</a>
+                        </div>
+                    </div><!--footer col end-->
+                    <div class="col-md-3 margin-btm-20">
+                        <div class="footer-col margin-btm-20">
+                            <h3>Follow us</h3>
+                            <ul class=" list-inline social-btn">
+                                <li><a href="#"><i class="ion-social-facebook" data-toggle="tooltip" data-placement="top" title="" data-original-title="Like On Facebook"></i></a></li>
+                                <li><a href="#"><i class="ion-social-twitter" data-toggle="tooltip" data-placement="top" title="" data-original-title="Follow On twitter"></i></a></li>
+                                <li><a href="#"><i class="ion-social-googleplus" data-toggle="tooltip" data-placement="top" title="" data-original-title="Follow On googleplus"></i></a></li>
+                            </ul>
+                        </div> 
+                    </div><!--footer col end-->
+                    <div class="col-md-3 margin-btm-20">
                         <div class="footer-col">
                             <h3>contact info</h3>
                             <p><i class="ion-home"></i> pearl tower,3rd floor,jaipur,302012</p>
                             <p><i class="ion-iphone"></i> +91 9887568614</p>
                             <p><i class="ion-email"></i> mail@domain.com</p>
                         </div>
-                        <div class="space-20"></div>
-                        <div class="footer-col">
-                            <h3>Follow us</h3>
-                            <ul class=" list-inline social-btn">
-                                <li><a href="#"><i class="ion-social-facebook" data-toggle="tooltip" data-placement="top" title="" data-original-title="Like On Facebook"></i></a></li>
-                                <li><a href="#"><i class="ion-social-twitter" data-toggle="tooltip" data-placement="top" title="" data-original-title="Follow On twitter"></i></a></li>
-                                <li><a href="#"><i class="ion-social-googleplus" data-toggle="tooltip" data-placement="top" title="" data-original-title="Follow On googleplus"></i></a></li>
-                                <li><a href="#"><i class="ion-social-pinterest" data-toggle="tooltip" data-placement="top" title="" data-original-title="pinterest"></i></a></li>
-                                <li><a href="#"><i class="ion-social-skype" data-toggle="tooltip" data-placement="top" title="" data-original-title="skype"></i></a></li>
-                            </ul>
-                        </div><!--footer social col-->
-                    </div><!--col-4 end-->
-                    <div class="col-md-3 margin-btm-20">
-                        <div class="footer-col">
-                            <h3>Latest post</h3>
-                            <ul class="post-list list-unstyled">
-                                <li><a href="#" class="hover-color">Blog post with image</a></li>
-                                <li><a href="#" class="hover-color">lorem ipsum dollor sit amet</a></li>
-                                <li><a href="#" class="hover-color">Blog post with audio</a></li>
-                                <li><a href="#" class="hover-color">lorem ipsum dollor sit amet</a></li>
-                                <li><a href="#" class="hover-color">Blog post with quote</a></li>
-                            </ul>
-                        </div>
-                    </div><!--latest post col end-->
-                    <div class="col-md-5">
-                        <div class="footer-col">
-                            <h3>Get in touch</h3>
-                            <form>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <input type="text" class="form-control" placeholder="Name...">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="email" class="form-control" placeholder="Email...">
-                                    </div>
-                                    <div class="col-md-12">
-                                        <input type="text" class="form-control" placeholder="Subject...">
-                                    </div>
-                                    <div class="col-md-12">
-                                        <textarea class="form-control" placeholder="Massage..." rows="7"></textarea>
-                                    </div>
-                                    <div class="col-md-12 text-right">
-                                        <button type="submit" class="btn btn-lg btn-white">Send massege</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div><!--get in touch col end-->
-                </div><!--footer main row end-->  
-                <div class="space-70"></div>
-                <div class="row">
-                    <div class="col-md-12 text-center footer-bottom">
-                        <a href="index.html"> <img src="assets/img/logo-white.png" alt=""></a>
-                        <div class="space-20"></div>
-                        <span>&copy;2014.all right resrved.Design by design_mylife</span>
-                    </div>
-                </div><!--footer copyright row end-->
-            </div><!--container-->
-        </div><!--footer main end-->
 
-        <!--scripts-->
+                    </div><!--footer col end-->
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-1 footer-logo">
+                            <a href="index.html">
+                                <img src="assets/img/logo-white.png" alt="">
+                            </a>
+                        </div>
+                        <div class="col-md-5">
+                            <p>&copy; copyright 2014.all right reserved</p>
+                        </div>
+                        <div class="col-md-6 ">
+                            <ul class="list-inline footer-nav">
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="faqs.html">Faqs</a></li>
+                                <li><a href="blog-full.html">News</a></li>
+                                <li><a href="pricing.html">Pricing</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer><!--#footer option end-->
+         <!--scripts-->
+           <!--scripts-->
         <script src="assets/js/jquery-1.10.2.min.js" type="text/javascript"></script>
         <script type="text/javascript" src="assets/js/modernizr.custom.97074.js"></script>
         <script src="assets/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
