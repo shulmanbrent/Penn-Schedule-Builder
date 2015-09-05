@@ -29,15 +29,48 @@ def enter_requirements(req_numbers, otherParams):
 	self.req_types = {}
 	
 	for req in req_numbers:
-		self.req_types[req] = self.findAllClasses(req, params) ## FIX PARAM STUFF HERE
+		self.req_types[req] = self.findAllClasses(req, params) # FIX PARAM STUFF HERE
 
 
 
 def find_schedule(req_course_list, req_numbers, selected_classes):
 	
-	if len(req_numbers) == 0:
+	finished = True
+
+	for req in req_numbers:
+		if req_numbers[req] > 0:
+			finished = False
+			break
+
+	if finished:
 		return selected_classes
 
 	for req in req_numbers:
+		if req_numbers[req] == 0:
+			continue
+
 		valid_courses = req_course_list[req]
+		if len(valid_courses) == 0:
+			return False
 		
+		for i in range(0, len(req_course_list) - 1):
+			
+			course_to_add = req_course_list[req][i]
+			# first check if this class in in selected classes
+			if course_to_add in selected_classes:
+				continue
+				
+			selected_classes.append(course_to_add)
+			req_numbers[req] = req_numbers[req] - 1
+				
+			result = self.find_schedule(req_course_list, req_numbers, selected_classes)
+
+			if not result:
+				# Restore state from before
+				selected_classes.pop()
+				req_numbers[req] = req_numbers[req] + 1
+			else:
+				return selected_classes
+
+	return False
+
