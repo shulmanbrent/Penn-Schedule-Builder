@@ -32,7 +32,7 @@ class JsonCourseParser:
 
 				day_map[day].append((start_time, end_time))
 
-		return get_meetings
+		return day_map
 
 	def convert_to_ascii(string_list):
 		for i in range(0, len(string_list)):
