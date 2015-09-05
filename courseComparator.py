@@ -4,13 +4,13 @@ def course_meets_on_days(course, days_to_check):
 	course_meeting_days = list(course["meetings_days"])
 	for day_to_check in days_to_check:
 		if day_to_check in course_meeting_days:
-			return true
-	return false
+			return True
+	return False
 
 def courses_are_same(first_course, second_course):
-	first_course_title = parser.get_course_department(first_course) 
+	first_course_title = parser.get_course_department(first_course) \
 		+ parser.get_course_number(first_course)
-	second_course_title = parser.get_course_department(second_course) 
+	second_course_title = parser.get_course_department(second_course) \
 		+ parser.get_course_number(second_course)
 	return first_course_title == second_course_title
 
@@ -30,13 +30,13 @@ def course_times_overlap(first_course_time, second_course_time):
 	first_course_end = first_course_time[1]
 	second_course_start = second_course_time[0]
 	second_course_end = second_course_time[1]
-	if first_course_start > second_course_start and 
+	if first_course_start > second_course_start and \
 		first_course_start < second_course_end:
-		return true
-	if second_course_start > first_course_start and 
+		return True
+	if second_course_start > first_course_start and \
 		second_course_start < first_course_end:
-		return true
-	return false
+		return True
+	return False
 
 
 def course_meeting_times_overlap(first_course, second_course, days_overlapped):
@@ -47,18 +47,18 @@ def course_meeting_times_overlap(first_course, second_course, days_overlapped):
 		second_course_times = second_course_meetings[day]
 		for first_course_time in first_course_times:
 			for second_course_time in second_course_times:
-				if coure_times_overlap(first_course_time, second_course_time):
-					return true
-	return false
+				if course_times_overlap(first_course_time, second_course_time):
+					return True
+	return False
 
 
 def courses_overlap(first_course, second_course):
 	if courses_are_same(first_course, second_course):
-		return true
+		return True
 	else:
 		shared_days = shared_meeting_days(first_course, second_course)
-		if shared_days.len() == 0:
-			return false
+		if len(shared_days) == 0:
+			return False
 		return course_meeting_times_overlap(first_course, second_course, shared_days)
 
 
