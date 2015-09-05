@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # image name
-__image=shulmanbrent/heroku_django
+__image=shulmanbrent/penn-scheduler-flask
 __volume_host=/$(pwd)
 __volume_cntr=/data
 
