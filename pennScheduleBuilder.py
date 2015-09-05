@@ -4,7 +4,7 @@ import json
 registrar = Registrar('UPENN_OD_emFc_1001364', '6kl4eonkquheuti65e32qick6l')
 
 def set_requirements(reqs):
-	if reqs === None or len(reqs) === 0:
+	if reqs == None or len(reqs) == 0:
 		return 'Must have at least one requirement'
 
 	total_credits = 0
