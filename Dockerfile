@@ -15,6 +15,9 @@ RUN apt-get install --assume-yes ipython
 RUN apt-get install --assume-yes ipython-notebook
 RUN apt-get install -y nano locales curl unzip openssl
 
+# Install flask
+RUN pip install flask
+
 # Stage files in current folder in /data
 ADD . /data
 
