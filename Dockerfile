@@ -17,6 +17,7 @@ RUN apt-get install -y nano locales curl unzip openssl
 
 # Install flask
 RUN pip install flask
+RUN pip install PennSDK
 
 # Stage files in current folder in /data
 ADD . /data
