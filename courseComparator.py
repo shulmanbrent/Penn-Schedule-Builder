@@ -1,7 +1,7 @@
 import jsonCourseParser as parser
 
 def course_meets_on_days(course, days_to_check):
-	course_meeting_days = list(course["meetings_days"])
+	course_meeting_days = list(course["meeting_days"])
 	for day_to_check in days_to_check:
 		if day_to_check in course_meeting_days:
 			return True

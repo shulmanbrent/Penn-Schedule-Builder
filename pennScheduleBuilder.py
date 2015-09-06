@@ -35,20 +35,15 @@ class ScheduleBuilder(object):
 
 		search_params = {}
 		search_params['fulfills_requirement'] = req_type
-		#search_params['course_id'] = 'cis'
-		#search_params['term'] = '2015C'
-		print req_type
-		
-		#search_params['status'] = 'O'
-		#search_params['is_cancelled'] = False
+		search_params['term'] = '2015C'
+		search_params['status'] = 'O'
+		search_params['is_cancelled'] = False
 		# if course_level_above is not None:
 		# 	search_params['course_level_above'] = course_level_above
 		# if course_level_below is not None:
 		# 	search_params['course_level_below'] = course_level_below
 		# if starts_after is not None:
 		# 	search_params['starts_at_or_after_hour'] = starts_after
-
-		print search_params
 
 		all_courses = self.registrar.search(search_params)
 
@@ -87,10 +82,10 @@ class ScheduleBuilder(object):
 			return 0
 
 	def filter_course_days(self, courses, no_class_days):
-		for i in range(0, len(courses) - 1)
+		for i in range(0, len(courses) - 1):
 			current_course = courses[i]
-			if courseComparator.course_meets_on_days(courrent_course[i]):
-				del courrent_course[i]
+			if courseComparator.course_meets_on_days(current_course, no_class_days):
+				del current_course[i]
 
 	def find_schedule(self):
 		result = self.find_schedule_recurse(self.all_valid_courses, self.req_numbers, [])
