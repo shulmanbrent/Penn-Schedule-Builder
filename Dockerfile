@@ -22,6 +22,8 @@ RUN pip install PennSDK
 # Stage files in current folder in /data
 ADD . /data
 
+RUN pip install -r /data/requirements.txt
+
 EXPOSE 8888
 EXPOSE 5000
 EXPOSE 80
