@@ -51,4 +51,22 @@ def get_prereqs(course):
 	prereqs = prereq_notes[0].split(", ")
 	return prereqs
 
+def convert_requirement_to_acronym(requirement):
+	return { 
+		"Cross Cultural Analysis": "MC1",
+		"Cultural Diversity in the US": "MC2",
+		"Arts & Letters Sector": "MDA",
+		"History & Tradition Sector": "MDH",
+		"Living World Sector": "MDL",
+		"Natural Science & Math Sector": "MDN,MDB",
+		"Humanities & Social Science Sector": "MDO,MDB",
+		"Physical World Sector": "MDP",
+		"Society Sector": "MDS",
+		"Formal Reasoning Course": "MFR",
+		"College Quantitative Data Analysis Req.": "MQS",
+		"Writing Requirement": "MWC"
+		}[requirement]
+
+	}
+
 
