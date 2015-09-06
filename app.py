@@ -16,6 +16,10 @@ def scheduler():
 	classes = courses.readline()
 	return render_template("scheduler.html", classes=classes)
 
+@app.route("/restrictions")
+def restrictions():
+	return render_template("restrictions.html")
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
