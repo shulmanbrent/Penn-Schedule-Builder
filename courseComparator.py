@@ -1,11 +1,11 @@
 import jsonCourseParser as parser
 
-def course_meets_on_days(course, days_to_check):
-	course_meeting_days = list(course["meetings_days"])
-	for day_to_check in days_to_check:
-		if day_to_check in course_meeting_days:
-			return True
-	return False
+# def course_meets_on_days(course, days_to_check):
+# 	course_meeting_days = list(course["meetings_days"])
+# 	for day_to_check in days_to_check:
+# 		if day_to_check in course_meeting_days:
+# 			return True
+# 	return False
 
 def courses_are_same(first_course, second_course):
 	first_course_title = parser.get_course_department(first_course) \
@@ -86,6 +86,12 @@ def pick_best_schedule(all_courses, number_of_courses_to_take):
 		courses_that_fit = filter_out_courses_that_overlap(least_difficult_course, courses_that_fit)
 	return schedule
 
+def filter_out_courses_that_overlap(first_course, courses_to_compare):
+	courses_that_fit = list()
+	for course_to_compare in courses_to_compare:
+		if not courses_overlap(first_course, course_to_compare):
+			courses_that_fit.append(course_to_compare)
+	return courses_that_fit
 
 
 
