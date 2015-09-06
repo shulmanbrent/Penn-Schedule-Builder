@@ -67,9 +67,3 @@ def filter_out_courses_that_overlap(first_course, courses_to_compare):
 		if not courses_overlap(first_course, course_to_compare):
 			courses_that_fit.append(course_to_compare)
 	return courses_that_fit
-
-
-
-
-
-

@@ -4,6 +4,7 @@ import os
 import penncoursereview
 import jsonCourseParser as CourseParser
 import courseComparator
+import pdb
 
 class ScheduleBuilder(object):
 
@@ -27,14 +28,17 @@ class ScheduleBuilder(object):
 		return True
 		
 
-	def find_all_classes(self, req_type, course_level_above=None, course_level_below=None, starts_after=None):
+	def find_all_courses(self, req_type, course_level_above=None, course_level_below=None, starts_after=None):
 		# First enter default params for all courses
 
 		print "Finding classes with params: "
 
 		search_params = {}
-		search_params['term'] = '2015C'
-		search_params['fulfills_requiremement'] = req_type
+		search_params['fulfills_requirement'] = req_type
+		#search_params['course_id'] = 'cis'
+		#search_params['term'] = '2015C'
+		print req_type
+		
 		#search_params['status'] = 'O'
 		#search_params['is_cancelled'] = False
 		# if course_level_above is not None:
@@ -61,14 +65,14 @@ class ScheduleBuilder(object):
 
 
 	def enter_preferences(self, starts_after=None, ends_before=None, no_class_days=None, difficulty_limit=None, work_limit=None, lunch_break=None):
-		self.all_valid_classes = []
+		self.all_valid_courses = []
 
 		for req in self.req_numbers:
 			print req
-			self.all_valid_classes = self.all_valid_classes + self.get_all_courses(self.find_all_classes(req, starts_after=starts_after))
+			self.all_valid_courses = self.all_valid_courses + self.generator_to_list(self.find_all_courses(req, starts_after=starts_after))
 			
-		self.filter_class_days(self.all_valid_classes, no_class_days)
-		self.all_valid_classes.sort(cmp_course)
+		self.filter_course_days(self.all_valid_courses, no_class_days)
+		self.all_valid_courses.sort(cmp_course)
 
 
 	def cmp_course(course1, course2):
@@ -82,15 +86,14 @@ class ScheduleBuilder(object):
 		else:
 			return 0
 
-	def filter_class_days(self, req_classes, no_class_days):
-		for req in req_classes:
-			current_classes = req_classes[req]
-			for i in range(0, len(req_classes[req]) - 1):
-				if self.class_meets_on_days(current_classes[i]):
-					del current_classes[i]
+	def filter_course_days(self, courses, no_class_days):
+		for i in range(0, len(courses) - 1)
+			current_course = courses[i]
+			if courseComparator.course_meets_on_days(courrent_course[i]):
+				del courrent_course[i]
 
 	def find_schedule(self):
-		result = self.find_schedule_recurse(self.all_valid_classes, self.req_numbers, [])
+		result = self.find_schedule_recurse(self.all_valid_courses, self.req_numbers, [])
 
 		return result
 
@@ -125,17 +128,14 @@ class ScheduleBuilder(object):
 
 		return total
 
-	def get_all_courses(self, generator):
-		print "changing generator into list"
+	def generator_to_list(self, generator):
 		all_courses_list = []
 		num = 0
 		for item in generator:
 			all_courses_list.append(item)
-			# print json.dumps(item, indent=4, sort_keys=True, separators=(', ', ': '))
-			print num
+
 			num = num + 1
 
-		print "created list with " + len(all_courses_list) + " items"
 		return all_courses_list
 
 	# def valid_req(course, req_numbers):
