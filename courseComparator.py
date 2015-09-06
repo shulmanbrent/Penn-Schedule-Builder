@@ -1,7 +1,8 @@
 import jsonCourseParser as parser
 
 def course_meets_on_days(course, days_to_check):
-	course_meeting_days = list(course["meetings_days"])
+	course_meetings = parser.get_meetings(course)
+	course_meeting_days = course_meetings.keys()
 	for day_to_check in days_to_check:
 		if day_to_check in course_meeting_days:
 			return True
@@ -68,8 +69,17 @@ def filter_out_courses_that_overlap(first_course, courses_to_compare):
 			courses_that_fit.append(course_to_compare)
 	return courses_that_fit
 
-
-
-
-
+def filter_out_courses_where_prereq_not_met(all_courses, courses_taken):
+	courses_eligible_for = list()
+	for course in all_courses:
+		prereqs = parser.get_prereqs(course)
+		if len(prereqs) == 0:
+			courses_eligible_for.append(course)
+		else:
+			all_prereqs_met = True
+			for prereq in prereqs:
+				all_prereqs_met = all_prereqs_met and prereq in courses_taken
+			if all_prereqs_met:
+				courses_eligible_for.append(course)
+	return courses_eligible_for
 
