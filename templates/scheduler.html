@@ -394,20 +394,19 @@
                 </div><!--pricing col end-->
             </div><!--pricing 4 col row end-->
             <div class="space-40"></div>
-            
             <div id="inputFields_1" class="row">
                 <div  class="col-md-12" style="text-align: center;">
                     <h4 class="heading-mini">What classes (if any) are you required to take this semester?</h4>
                 </div>
                 <form id="first_form" action"/scheduler" method="POST">
                     <div style="text-align: center;">
-                        <input type="text" name="required-class-1" placeholder="Type a class you need to take" class="need_class_input">
+                        <input type="text" name="required-class-1" placeholder="..." class="need_class_input">
                     </div>
-                </form>
+                </form><br>
+                <center><button name="data" type="button" onclick="addQuestion()">+</button></center><br>
 
             </div>
             <div style="text-align: center;">
-                <button name="data" type="button" onclick="addQuestion()">+</button>
             </div>
             <script language="javascript" type="text/javascript">
                 function submitDetailsForm() {
@@ -415,16 +414,17 @@
                 }
             </script>
 
+
             <div id="inputFields_2" class="row">
                 <div  class="col-md-12" style="text-align: center;">
                     <h4 class="heading-mini">What classes have you taken in the past?</h4>
                 </div>
                     <div style="text-align: center;">
-                        <input type="text" name="taken-class-1" placeholder="Type a class you have taken" form="first_form" class="need_class_input">
+                        <input type="text" name="taken-class-1" placeholder="..." form="first_form" class="need_class_input">
                     </div>
-            </div>
+            </div><br>
             <div style="text-align: center;">
-                <button name="data" type="button" onclick="addQuestion2()">+</button>
+                <button name="data" type="button" onclick="addQuestion2()">+</button><br><br><br>
             </div>
 
 
