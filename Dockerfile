@@ -24,9 +24,10 @@ ADD . /data
 
 EXPOSE 8888
 EXPOSE 5000
+EXPOSE 80
 
 # setup data volume
 VOLUME ["/data"]
 
 # default to shell
-CMD ["/bin/bash"]
+CMD ["python", "/data/application.py""]

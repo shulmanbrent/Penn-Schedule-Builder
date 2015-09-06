@@ -2,11 +2,13 @@ import os
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash
 from penn.registrar import Registrar
+import flask
 
 app = Flask(__name__, static_url_path='/static')
 
 schedule_requirements = dict()
 
+flask.debug= True
 
 @app.route('/')
 def main():
@@ -31,7 +33,7 @@ def scheduler():
 
 @app.route("/your_schedule", methods=['GET', 'POST'])
 def restrictions():
-	if request.method != 'POST':
+	if request.method == 'POST':
 		for (req, val) in request.form.items():
 			schedule_requirements[req] =  val
 		sample_data = [
@@ -85,7 +87,10 @@ def class_exists(form):
 			if any([v == name[:-1] for name in possible_classes]):
 				continue
 			else:
+				possible_classes.close()
 				return v
+	possible_classes.close()
+	return None
 
 
 if __name__ == '__main__':
