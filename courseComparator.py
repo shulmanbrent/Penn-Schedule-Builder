@@ -69,7 +69,6 @@ def filter_out_courses_that_overlap(first_course, courses_to_compare):
 			courses_that_fit.append(course_to_compare)
 	return courses_that_fit
 
-
 def filter_out_courses_where_prereq_not_met(all_courses, courses_taken):
 	courses_eligible_for = list()
 	for course in all_courses:
@@ -83,7 +82,4 @@ def filter_out_courses_where_prereq_not_met(all_courses, courses_taken):
 			if all_prereqs_met:
 				courses_eligible_for.append(course)
 	return courses_eligible_for
-
-
-
 
