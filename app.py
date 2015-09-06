@@ -12,6 +12,10 @@ schedule_requirements = dict()
 def main():
 	return render_template("index.html")
 
+@app.route("/about")
+def about():
+	return render_template("about.html")
+
 @app.route("/scheduler", methods=['GET', 'POST'])
 def scheduler():
 
@@ -20,14 +24,16 @@ def scheduler():
 			schedule_requirements[req] =  val
 		return render_template("restrictions.html")
 	else:
-		return render_template("port.html")
+		return render_template("scheduler.html")
 
-@app.route("/schedule", methods=['GET', 'POST'])
+@app.route("/your_schedule", methods=['GET', 'POST'])
 def restrictions():
 	if request.method == 'POST':
-		#TODO
+		for (req, val) in request.form.items():
+			schedule_requirements[req] =  val
+		return render_template("your-schedule.html")
 	else:
-		return render_template("restrictions.html")
+		return render_template("your-schedule.html")
 
 
 if __name__ == '__main__':

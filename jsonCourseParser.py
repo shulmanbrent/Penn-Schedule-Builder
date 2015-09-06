@@ -43,3 +43,12 @@ def get_meetings(course):
 def convert_to_ascii(string_list):
 	for i in range(0, len(string_list)):
 		string_list[i] = string_list[i].encode('ascii')
+
+def get_prereqs(course):
+	prereq_notes = course['prerequisite_notes']
+	if len(prereq_notes) == 0:
+		return list()
+	prereqs = prereq_notes[0].split(", ")
+	return prereqs
+
+

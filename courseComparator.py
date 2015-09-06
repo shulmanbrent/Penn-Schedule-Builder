@@ -67,3 +67,18 @@ def filter_out_courses_that_overlap(first_course, courses_to_compare):
 		if not courses_overlap(first_course, course_to_compare):
 			courses_that_fit.append(course_to_compare)
 	return courses_that_fit
+
+def filter_out_courses_where_prereq_not_met(all_courses, courses_taken):
+	courses_eligible_for = list()
+	for course in all_courses:
+		prereqs = parser.get_prereqs(course)
+		if len(prereqs) == 0:
+			courses_eligible_for.append(course)
+		else:
+			all_prereqs_met = True
+			for prereq in prereqs:
+				all_prereqs_met = all_prereqs_met and prereq in courses_taken
+			if all_prereqs_met:
+				courses_eligible_for.append(course)
+	return courses_eligible_for
+
