@@ -1,1 +1,1 @@
-web: gunicorn PantryPal.wsgi --log-file=-
+web: gunicorn Penn-Scheduler-Builder.wsgi --log-file=-
