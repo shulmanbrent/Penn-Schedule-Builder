@@ -57,6 +57,8 @@ def courses_overlap(first_course, second_course):
 		return True
 	else:
 		shared_days = shared_meeting_days(first_course, second_course)
+		print 'Shared days are: '
+		print shared_days
 		if len(shared_days) == 0:
 			return False
 		return course_meeting_times_overlap(first_course, second_course, shared_days)
@@ -86,6 +88,12 @@ def pick_best_schedule(all_courses, number_of_courses_to_take):
 		courses_that_fit = filter_out_courses_that_overlap(least_difficult_course, courses_that_fit)
 	return schedule
 
+def filter_out_courses_that_overlap(first_course, courses_to_compare):
+	courses_that_fit = list()
+	for course_to_compare in courses_to_compare:
+		if not courses_overlap(first_course, course_to_compare):
+			courses_that_fit.append(course_to_compare)
+	return courses_that_fit
 
 
 
