@@ -5,6 +5,7 @@ from penn.registrar import Registrar
 
 app = Flask(__name__, static_url_path='/static')
 
+schedule_requirements = dict()
 
 
 @app.route('/')
@@ -15,6 +16,8 @@ def main():
 def scheduler():
 
 	if request.method == 'POST':
+		for (req, val) in request.form.items():
+			schedule_requirements[req] =  val
 		return render_template("restrictions.html")
 	else:
 		return render_template("scheduler.html")
