@@ -5,58 +5,93 @@
         <section id="content-region-3" class="padding-40 page-tree-bg">
             <div class="container">
                 <h3 class="page-tree-text">
-                    Portfolio single
+                    Your personalized schedule
                 </h3>
             </div>
         </section><!--page-tree end here-->
         <div class="space-70"></div>
+
         <div class="container portfolio-details">
             <div class="row">
                 <div class="col-md-8 portfolio-single-slide margin-btm-40">
                     <div class="flexslider">
                         <ul class="slides">
                             <li>
-                                <img src="static/img/work/work-1.jpg" class="img-responsive" alt="">
-                            </li>
-                            <li>
-                                <img src="static/img/work/work-2.jpg" class="img-responsive" alt="">
-                            </li>
-                            <li>
-                                <img src="static/img/work/work-3.jpg" class="img-responsive" alt="">
-                            </li>
-                            <li>
-                                <img src="static/img/work/work-7.jpg" class="img-responsive" alt="">
+                                 <table border='1'  bordercolor='#FFFF00' cellspacing='0' cellpadding='0' align=center style="min-height:100%; width:100%">
+                                <tr><td><table cellspacing='0' cellpadding='0' align=center  border='1' style="width: 100%; min-height: 500px;"></tr><tr style="height: 50px; text-align: center;">
+                                <td><font size='3' face='Tahoma'><b>M</b></font></td>
+
+                                <td><font size='3' face='Tahoma'><b>T</b></font></td>
+
+                                <td><font size='3' face='Tahoma'><b>W</b></font></td>
+
+                                <td><font size='3' face='Tahoma'><b>T</b></font></td>
+
+                                <td><font size='3' face='Tahoma'><b>F</b></font></td>
+
+                                </tr>
+                                <tr>
+                                <td valign=top>{% for c in by_date.Monday %}
+                                    {{ c.meetings.tod[0] }}
+                                    <div style="
+                                        height: 40px;
+                                        background-color: thistle;
+                                    ">{{ c.full_name }}
+                                    </div>
+                                    {{ c.meetings.tod[1] }}
+                                    <br>
+                                    {% endfor %}
+                                </td>
+                                <td valign=top>{% for c in by_date.Tuesday %}
+                                    {{ c.meetings.tod[0] }}
+                                    <div style="
+                                        height: 40px;
+                                        background-color: thistle;
+                                    ">{{ c.full_name }}
+                                    </div>
+                                    {{ c.meetings.tod[1] }} <br>
+                                    {% endfor %}</td>
+                                <td valign=top>{% for c in by_date.Wednesday %}
+                                    {{ c.meetings.tod[0] }}
+                                    <div style="
+                                        height: 40px;
+                                        background-color: thistle;
+                                    ">{{ c.full_name }}
+                                    </div>
+                                    {{ c.meetings.tod[1] }}<br>
+                                    {% endfor %}</td>
+
+                                 <td valign=top>{% for c in by_date.Thursday %}
+                                    {{ c.meetings.tod[0] }}
+                                    <div style="
+                                        height: 40px;
+                                        background-color: thistle;
+                                    ">{{ c.full_name }}
+                                    </div>
+                                    {{ c.meetings.tod[1] }}<br>
+                                    {% endfor %}</td>
+
+                                 <td valign=top>{% for c in by_date.Friday %}
+                                    {{ c.meetings.tod[0] }}
+                                    <div style="
+                                        height: 40px;
+                                        background-color: thistle;
+                                    ">{{ c.full_name }}
+                                    </div> 
+                                    {{ c.meetings.tod[1] }}<br>
+                                    {% endfor %}
+                                </td>
+                                    </tr></table></td></tr></table>
                             </li>
                         </ul>
                     </div><!--flex slider-->
-                    <div class="portfolio-single-desc">
-                        <h3>Project title goes here</h3>
-                        <p>
-                            aliqua.adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna. aliqua.adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.aliqua.adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna. aliqua.adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.
-                        </p>
-                        <p>
-                            aliqua.adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna. aliqua.adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.
-                        </p>
-                        <p>
-                            aliqua.adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna. aliqua.adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.aliqua.adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna. aliqua.adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.
-                        </p>
-                        <hr>
-                    </div><!--portfolio detail-->
                 </div>
                 <div class="col-md-4">
                     <div class="portfolio-side-bar">
-                        <p>
-                            <strong>Client:</strong> Design_mylife
-                        </p>
-                         <p>
-                            <strong>Skills:</strong> HTML5, CSS3, Bootstrap3, Jquery
-                        </p>
-                         <p>
-                            <strong>Time:</strong> March 10 2015 - March 25 2015
-                        </p>
-                         <p>
-                            <strong>Client Says:</strong> "Great services!, my project goes live and am very happy to pay design_mylife. sed do eiusmod tempor incididunt ut labore et dolore magna."
-                        </p>
+                        <strong>Your courses are:</strong><br>
+                        {% for c in data %}
+                        <p><strong>{{ c.full_name }}:</strong> {{ c.meetings.tod[0] }}-{{ c.meetings.tod[1] }}</p>
+                        {% endfor %}
                         <br>
                         <p>
                             <a href="#" class="btn btn-radius theme-btn-color">Visit Project</a>
