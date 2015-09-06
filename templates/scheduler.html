@@ -117,8 +117,12 @@
                 <div class="col-md-12">
                     <h4 class="heading-mini">Pricing tables 3 columns</h4>
                 </div>
-            </div>  
-
+            </div>
+              <select name="cars">
+                {% for class in classes %}
+                <option value="{{ class }}">{{ class }}</option>
+                {% endfor %}
+              </select>
             <div class="row">
                 <div class="col-md-4 margin-btm-20">
                     <div class="pricing-wrapper">
