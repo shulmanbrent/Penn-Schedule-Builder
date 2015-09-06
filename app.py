@@ -20,11 +20,14 @@ def scheduler():
 			schedule_requirements[req] =  val
 		return render_template("restrictions.html")
 	else:
-		return render_template("scheduler.html")
+		return render_template("port.html")
 
-@app.route("/restrictions")
+@app.route("/schedule", methods=['GET', 'POST'])
 def restrictions():
-	return render_template("restrictions.html")
+	if request.method == 'POST':
+		#TODO
+	else:
+		return render_template("restrictions.html")
 
 
 if __name__ == '__main__':
