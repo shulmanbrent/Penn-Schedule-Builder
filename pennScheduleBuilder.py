@@ -23,10 +23,11 @@ class ScheduleBuilder(object):
 			return 'Why the fuck are you taking more than six and a half classes, go outside'
 		
 
-	def find_all_classes(self, reqType, course_level_above=None, course_level_below=None, starts_after=None):
+	def find_all_classes(self, req_type, course_level_above=None, course_level_below=None, starts_after=None):
 		# First enter default params for all courses
 		search_params = {}
 		search_params['term'] = '2015C'
+		search_params['fulfills_requiremement'] = req_type
 		search_params['status'] = 'O'
 		search_params['is_cancelled'] = False
 		# if course_level_above is not None:
@@ -38,6 +39,8 @@ class ScheduleBuilder(object):
 
 		all_courses = registrar(search_params)
 
+		return all_courses
+
 	# def add_ratings(courses):
 	# 	for course in courses:
 	# 		course_info = penncoursereview(CourseParser.get_course_department(course), CourseParser.get_course_number(course), \
@@ -47,13 +50,27 @@ class ScheduleBuilder(object):
 
 
 	def enter_requirements(self, req_numbers, starts_after=None, ends_before=None, no_class_days=None, difficulty_limit=None, work_limit=None, lunch_break=None):
-		self.req_classes = {}
-		
+		self.all_valid_classes = []
+
+		self.req_numbers = req_numbers
+
 		for req in req_numbers:
-			self.req_classes[req] = self.findAllClasses(req, starts_after=starts_after) # FIX PARAM STUFF HERE
-			self.filter_class_days(self.req_classes, no_class_days)
+			self.all_valid_classes = self.all_valid_classes + self.findAllClasses(req, starts_after=starts_after)
+			
+		self.filter_class_days(self.all_valid_classes, no_class_days)
+		self.all_valid_classes.sort(cmp_course)
 
 
+	def cmp_course(course1, course2):
+		start_time1 = course1['meetings'][0]['start_time_24']
+		start_time2 = course2['meetings'][0]['start_time_24']
+
+		if start_time1 < start_time2:
+			return -1
+		elif start_time2 < start_time1:
+			return 1
+		else:
+			return 0
 
 	def filter_class_days(self, req_classes, no_class_days):
 		for req in req_classes:
@@ -62,8 +79,12 @@ class ScheduleBuilder(object):
 				if self.class_meets_on_days(current_classes[i]):
 					del current_classes[i]
 
+	def find_schedule(self):
+		result = self.find_schedule_recurse(self.all_valid_classes, self.req_numbers, [])
 
-	def find_schedule(self, req_course_list, req_numbers, selected_classes):
+		return result
+
+	def find_schedule_recurse(self, req_course_list, req_numbers, selected_classes):
 		
 		finished = True
 
@@ -93,7 +114,7 @@ class ScheduleBuilder(object):
 				selected_classes.append(course_to_add)
 				req_numbers[req] = req_numbers[req] - 1
 					
-				result = self.find_schedule(req_course_list, req_numbers, selected_classes)
+				result = self.find_schedule_recurse(req_course_list, req_numbers, selected_classes)
 
 				if not result:
 					# Restore state from before
