@@ -19,9 +19,18 @@ def get_section(course):
 
 def get_requirements(course):
 	requirements = course['fulfills_college_requirements']
+
 	converted = convert_to_ascii(requirements)
-	print converted
-	return converted
+
+	acronym_list = []
+
+	for req in converted:
+		acronym = convert_requirement_to_acronym(req)
+
+		acronym_list.append(acronym)
+
+
+	return acronym_list
 
 def get_meetings(course):
 	day_map = {}
@@ -44,8 +53,9 @@ def get_meetings(course):
 
 def convert_to_ascii(string_list):
 	encoded_list = []
-	for i in range(0, len(string_list) - 1):
-		encoded_list.append(string_list[i].encode('ascii'))
+	for string in string_list:
+
+		encoded_list.append(string.encode('ascii'))
 
 	return encoded_list
 
@@ -57,21 +67,21 @@ def get_prereqs(course):
 	return prereqs
 
 def convert_requirement_to_acronym(requirement):
-	return { 
-		"Cross Cultural Analysis": "MC1",
-		"Cultural Diversity in the US": "MC2",
-		"Arts & Letters Sector": "MDA",
-		"History & Tradition Sector": "MDH",
-		"Living World Sector": "MDL",
-		"Natural Science & Math Sector": "MDN,MDB",
-		"Humanities & Social Science Sector": "MDO,MDB",
-		"Physical World Sector": "MDP",
-		"Society Sector": "MDS",
-		"Formal Reasoning Course": "MFR",
-		"College Quantitative Data Analysis Req.": "MQS",
-		"Writing Requirement": "MWC"
-		}[requirement]
 
-	}
+	requirement = requirement.lower()
+	return { \
+		"cross cultural analysis": "MC1", \
+		"cultural diversity in the us": "MC2", \
+		"arts & letters sector": "MDA", \
+		"history & tradition sector": "MDH", \
+		"living world sector": "MDL", \
+		"natural science & math sector": "MDN,MDB", \
+		"humanities & social science sector": "MDO,MDB", \
+		"physical world sector": "MDP", \
+		"society sector": "MDS", \
+		"formal reasoning course": "MFR", \
+		"college quantitative data analysis req.": "MQS", \
+		"writing requirement": "MWC" \
+		}[requirement]
 
 

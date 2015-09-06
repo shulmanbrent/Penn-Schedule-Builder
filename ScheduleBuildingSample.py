@@ -1,4 +1,5 @@
 import pennScheduleBuilder
+import json
 
 if __name__ == '__main__':
 	builder = pennScheduleBuilder.ScheduleBuilder()
@@ -17,4 +18,4 @@ if __name__ == '__main__':
 
 	result = builder.find_schedule()
 
-	print result
+	print json.dumps(result, indent=4, sort_keys=True, separators=(', ', ': '))

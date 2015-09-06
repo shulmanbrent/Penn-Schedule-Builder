@@ -117,9 +117,17 @@ class ScheduleBuilder(object):
 			# if course is not needed in requirements
 			all_course_reqs = CourseParser.get_requirements(course_to_add)
 
-			if course_to_add not in all_course_reqs:
+			fulfills_requirement = False
+			for req in all_course_reqs:
+				if req in req_numbers.keys() and req_numbers[req] > 0:
+					fulfills_requirement = True
+					break
+
+			if not fulfills_requirement:
+				print 'doesnt fulfill req'
 				continue
 
+			print 'ADDING COURSE'
 			selected_classes.append(course_to_add)
 
 			courses_after_selected = all_courses[i:]
@@ -127,9 +135,11 @@ class ScheduleBuilder(object):
 			all_courses = courseComparator.filter_out_courses_that_overlap(course_to_add, courses_after_selected)
 
 			for req in all_course_reqs:
-				req_numbers[req] = req_numbers[req] - 1
+				if req in req_numbers.keys() and req_numbers[req] > 0:
+					req_numbers[req] = req_numbers[req] - 1
+					break
 
-			return find_schedule_recurse(courses_after_selected, req_numbers, selected_classes)
+			return self.find_schedule_recurse(courses_after_selected, req_numbers, selected_classes)
 
 	def total_reqs_remaining(self, req_numbers):
 		total = 0
