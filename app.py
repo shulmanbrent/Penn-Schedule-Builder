@@ -22,12 +22,12 @@ def scheduler():
 	else:
 		return render_template("port.html")
 
-@app.route("/schedule", methods=['GET', 'POST'])
+@app.route("/your_schedule", methods=['GET', 'POST'])
 def restrictions():
 	if request.method == 'POST':
-		#TODO
+		return render_template("your-schedule.html")
 	else:
-		return render_template("restrictions.html")
+		return render_template("your-schedule.html")
 
 
 if __name__ == '__main__':
