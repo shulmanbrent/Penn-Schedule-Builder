@@ -12,9 +12,19 @@ def main():
 
 @app.route("/scheduler")
 def scheduler():
-	courses = open("class_list.txt", 'r')
-	classes = courses.readline()
-	return render_template("scheduler.html", classes=classes)
+	# courses = open("class_list.txt", 'r')
+	# depts = open("department_list.txt", 'r')
+	# classes = list()
+	# departments = list()
+	# r = Registrar('UPENN_OD_emFc_1001364', '6kl4eonkquheuti65e32qick6l')
+	# for course in courses:
+	# 	classes.append(course)
+	# for dep in depts:
+	# 	departments.append(dep)
+	# courses.close()
+	# depts.close()
+	# departments.sort()
+	return render_template("scheduler.html")
 
 @app.route("/restrictions")
 def restrictions():
