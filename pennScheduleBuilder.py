@@ -22,23 +22,33 @@ class ScheduleBuilder(object):
 		
 		if total_credits > 6.5:
 			return 'Why the fuck are you taking more than six and a half classes, go outside'
+
+		self.req_numbers = reqs
+		return True
 		
 
 	def find_all_classes(self, req_type, course_level_above=None, course_level_below=None, starts_after=None):
 		# First enter default params for all courses
+
+		print "Finding classes with params: "
+
 		search_params = {}
 		search_params['term'] = '2015C'
 		search_params['fulfills_requiremement'] = req_type
-		search_params['status'] = 'O'
-		search_params['is_cancelled'] = False
+		#search_params['status'] = 'O'
+		#search_params['is_cancelled'] = False
 		# if course_level_above is not None:
 		# 	search_params['course_level_above'] = course_level_above
 		# if course_level_below is not None:
 		# 	search_params['course_level_below'] = course_level_below
-		if starts_after is not None:
-			search_params['starts_at_or_after_hour'] = starts_after
+		# if starts_after is not None:
+		# 	search_params['starts_at_or_after_hour'] = starts_after
 
-		all_courses = registrar(search_params)
+		print search_params
+
+		all_courses = self.registrar.search(search_params)
+
+		print "request finished"
 
 		return all_courses
 
@@ -50,13 +60,12 @@ class ScheduleBuilder(object):
 	# 		difficulty_rating = course_info./
 
 
-	def enter_requirements(self, req_numbers, starts_after=None, ends_before=None, no_class_days=None, difficulty_limit=None, work_limit=None, lunch_break=None):
+	def enter_preferences(self, starts_after=None, ends_before=None, no_class_days=None, difficulty_limit=None, work_limit=None, lunch_break=None):
 		self.all_valid_classes = []
 
-		self.req_numbers = req_numbers
-
-		for req in req_numbers:
-			self.all_valid_classes = self.all_valid_classes + self.findAllClasses(req, starts_after=starts_after)
+		for req in self.req_numbers:
+			print req
+			self.all_valid_classes = self.all_valid_classes + self.get_all_courses(self.find_all_classes(req, starts_after=starts_after))
 			
 		self.filter_class_days(self.all_valid_classes, no_class_days)
 		self.all_valid_classes.sort(cmp_course)
@@ -116,8 +125,21 @@ class ScheduleBuilder(object):
 
 		return total
 
-	def valid_req(course, req_numbers):
-		is_valid = False
+	def get_all_courses(self, generator):
+		print "changing generator into list"
+		all_courses_list = []
+		num = 0
+		for item in generator:
+			all_courses_list.append(item)
+			# print json.dumps(item, indent=4, sort_keys=True, separators=(', ', ': '))
+			print num
+			num = num + 1
 
-		for req in req_numbers:
-			if req_numbers[req] > 0 and req ==
+		print "created list with " + len(all_courses_list) + " items"
+		return all_courses_list
+
+	# def valid_req(course, req_numbers):
+	# 	is_valid = False
+
+	# 	for req in req_numbers:
+	# 		if req_numbers[req] > 0 and req ==
