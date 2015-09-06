@@ -12,15 +12,13 @@
         <div class="space-70"></div>
         <div class="container">
             <div class="row">
-             
-            
 
             <div class="col-sm-4">
                             <!-- Panel default -->
                             <div class="panel panel-default">
                                 <div class="panel-heading">What is the earliest time you would start a class?</div>
                                 <div class="panel-body" style="height: 140px">
-                                    <center><select style="margin: 30px">
+                                    <center><select name="start-time" style="margin: 30px" form="second_form">
                                         <option value="">...</option>
                                         <option value="8">8:00 AM</option>
                                         <option value="9">9:00 AM</option>
@@ -37,7 +35,7 @@
                             <div class="panel panel-default">
                                 <div class="panel-heading">What is the latest time you would start a class?</div>
                                 <div class="panel-body" style="height: 140px">
-                                    <center><select style="margin: 30px">
+                                    <center><select name="end-time"style="margin: 30px" form="second_form">
                                         <option value="">...</option>
                                         <option value="1">1:00 PM</option>
                                         <option value="2">2:00 PM</option>
@@ -55,11 +53,11 @@
                                 <div class="panel-heading">What day(s) of the week do you not want class?</div>
                                 <div class="panel-body">
                                     <ul class="list-unstyled">
-                                <li><input type="checkbox" name="vehicle" placeholder="" value=""> Monday</li>
-                                <li><input type="checkbox" name="vehicle" placeholder="" value=""> Tuesday</li>
-                                <li><input type="checkbox" name="vehicle" placeholder="" value=""> Wednesday</li>
-                                <li><input type="checkbox" name="vehicle" placeholder="" value=""> Thursday</li>
-                                <li><input type="checkbox" name="vehicle" placeholder="" value=""> Friday</li>
+                                <li><input type="checkbox" name="dotw" placeholder="" value="" form="second_form"> Monday</li>
+                                <li><input type="checkbox" name="dotw" placeholder="" value="" form="second_form"> Tuesday</li>
+                                <li><input type="checkbox" name="dotw" placeholder="" value="" form="second_form"> Wednesday</li>
+                                <li><input type="checkbox" name="dotw" placeholder="" value="" form="second_form"> Thursday</li>
+                                <li><input type="checkbox" name="dotw" placeholder="" value="" form="second_form"> Friday</li>
                             </ul>
                                 </div>
                             </div>
@@ -73,7 +71,7 @@
                                 <div class="panel-heading">What time do you want a lunch break at?</div>
                                 <div class="panel-body">
 
-                                    <center><select>
+                                    <center><select name="lunch-start" form="second_form">
                                         <option value="">...</option>
                                         <option value="11">11:00 AM</option>
                                         <option value="12">12:00 PM</option>
@@ -89,7 +87,7 @@
                             <div class="panel panel-default">
                                 <div class="panel-heading">How long do you want your lunch break to be?</div>
                                 <div class="panel-body">
-                                    <center><select>
+                                    <center><select name="lunch-length" form="second_form">
                                         <option value="">...</option>
                                         <option value=".5">.5 hr</option>
                                         <option value="1">1 hr</option>
@@ -122,7 +120,14 @@
                 </div>
             </div><!--price faq row 2 end-->
         </div><!--pricing page end-->
-        <p><center><a href="/restrictions" class="btn theme-btn-default btn-lg" style="background-color:#000;color:#FFF;size:large">Submit</a></p></center>
+        <form id="second_form" action="/schedule" method="POST">
+        </form>
+        <script type="text/javascript">
+            function submitDetailsForm() {
+                       $("#second_form").submit();
+            }
+        </script>
+        <p><center><a href="#" onclick="submitDetailsForm()" onclass="btn theme-btn-default btn-lg" style="background-color:#000;color:#FFF;size:large">Submit</a></p></center>
         <div class="space-70"></div>
 
 {% endblock %}

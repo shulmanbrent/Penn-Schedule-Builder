@@ -5,30 +5,29 @@ from penn.registrar import Registrar
 
 app = Flask(__name__, static_url_path='/static')
 
+schedule_requirements = dict()
+
 
 @app.route('/')
 def main():
 	return render_template("index.html")
 
-@app.route("/scheduler")
+@app.route("/scheduler", methods=['GET', 'POST'])
 def scheduler():
-	# courses = open("class_list.txt", 'r')
-	# depts = open("department_list.txt", 'r')
-	# classes = list()
-	# departments = list()
-	# r = Registrar('UPENN_OD_emFc_1001364', '6kl4eonkquheuti65e32qick6l')
-	# for course in courses:
-	# 	classes.append(course)
-	# for dep in depts:
-	# 	departments.append(dep)
-	# courses.close()
-	# depts.close()
-	# departments.sort()
-	return render_template("scheduler.html")
 
-@app.route("/restrictions")
+	if request.method == 'POST':
+		for (req, val) in request.form.items():
+			schedule_requirements[req] =  val
+		return render_template("restrictions.html")
+	else:
+		return render_template("port.html")
+
+@app.route("/schedule", methods=['GET', 'POST'])
 def restrictions():
-	return render_template("restrictions.html")
+	if request.method == 'POST':
+		#TODO
+	else:
+		return render_template("restrictions.html")
 
 
 if __name__ == '__main__':
