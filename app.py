@@ -20,11 +20,13 @@ def scheduler():
 			schedule_requirements[req] =  val
 		return render_template("restrictions.html")
 	else:
-		return render_template("port.html")
+		return render_template("scheduler.html")
 
 @app.route("/your_schedule", methods=['GET', 'POST'])
 def restrictions():
 	if request.method == 'POST':
+		for (req, val) in request.form.items():
+			schedule_requirements[req] =  val
 		return render_template("your-schedule.html")
 	else:
 		return render_template("your-schedule.html")
