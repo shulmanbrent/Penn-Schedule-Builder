@@ -391,16 +391,18 @@
                 <div  class="col-md-12" style="text-align: center;">
                     <h4 class="heading-mini">What classes (if any) are you required to take this semester?</h4>
                 </div>
-                <div style="text-align: center;">
-                    <input type="text" name="required-class-1" placeholder="Type a class you need to take" class="need_class_input">
-                </div>
+                <form id="first_form" action="", method="POST">
+                    <div style="text-align: center;">
+                        <input type="text" name="required-class-1" placeholder="Type a class you need to take" class="need_class_input">
+                    </div>
+                </form>
 
             </div>
             <div style="text-align: center;">
                 <button name="data" type="button" onclick="addQuestion()">+</button>
             </div>
 
-            <p><center><a href="/restrictions" class="btn theme-btn-default btn-lg" style="background-color:#000;color:#FFF;size:large">Next &#8594;</a></p></center><div class="space-40"></div>
+            <p><center><a onclick="document.getElementById('first_form').submit();" href="/restrictions" class="btn theme-btn-default btn-lg" style="background-color:#000;color:#FFF;size:large">Next &#8594;</a></p></center><div class="space-40"></div>
             
             
         </div><!--pricing page end-->

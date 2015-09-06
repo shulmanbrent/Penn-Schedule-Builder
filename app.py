@@ -10,7 +10,7 @@ app = Flask(__name__, static_url_path='/static')
 def main():
 	return render_template("index.html")
 
-@app.route("/scheduler")
+@app.route("/scheduler", methods=['POST'])
 def scheduler():
 	# courses = open("class_list.txt", 'r')
 	# depts = open("department_list.txt", 'r')
@@ -24,7 +24,10 @@ def scheduler():
 	# courses.close()
 	# depts.close()
 	# departments.sort()
-	return render_template("scheduler.html")
+	if request.method == 'POST':
+		return "Hello World"
+	else:
+		return render_template("scheduler.html")
 
 @app.route("/restrictions")
 def restrictions():
