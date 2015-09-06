@@ -1,7 +1,7 @@
 import os
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash
-
+from penn.registrar import Registrar
 
 app = Flask(__name__, static_url_path='/static')
 
@@ -12,7 +12,9 @@ def main():
 
 @app.route("/scheduler")
 def scheduler():
-	return render_template("scheduler.html")
+	courses = open("class_list.txt", 'r')
+	classes = courses.readline()
+	return render_template("scheduler.html", classes=classes)
 
 @app.route("/restrictions")
 def restrictions():

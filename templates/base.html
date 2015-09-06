@@ -160,5 +160,10 @@
         <script src="static/js/parallax.min.js" type="text/javascript"></script>
         <script src="static/js/wow.min.js" type="text/javascript"></script>
         <script src="static/js/app.js" type="text/javascript"></script>
+        <script type="text/javascript">var limit = 1;
+function addQuestion(){
+   limit++;   
+   $("#inputFields").append("Question "+limit+":<input type='text' id='countries' name='Question"+limit+"' /><br />"); 
+}</script>
     </body>
 </html>

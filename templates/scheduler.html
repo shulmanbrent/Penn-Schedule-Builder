@@ -203,6 +203,17 @@
             </div><!--pricing 4 col row end-->
             <div class="space-40"></div>
 
+            <div class="row">
+                <div class="col-md-12">
+                    <h4 class="heading-mini">Pricing tables 3 columns</h4>
+                </div>
+            </div>
+              <select name="cars">
+                {% for class in classes %}
+                <option value="{{ class }}">{{ class }}</option>
+                {% endfor %}
+              </select>
+
             <p><center><a href="/restrictions" class="btn theme-btn-default btn-lg" style="background-color:#000;color:#FFF;size:large">Next &#8594;</a></p></center><div class="space-40"></div>
             
             
