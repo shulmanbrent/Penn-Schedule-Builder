@@ -20,6 +20,9 @@ def about():
 def scheduler():
 
 	if request.method == 'POST':
+		bad_class = class_exists(request.form)
+		if bad_class:
+			return render_template("scheduler.html", bad_class=bad_class)
 		for (req, val) in request.form.items():
 			schedule_requirements[req] =  val
 		return render_template("restrictions.html")
@@ -74,6 +77,15 @@ def class_by_days(data):
 		sorted(by_day[day], key=lambda c: c["meetings"]['tod'][0])
 	print "returning"
 	return by_day
+
+def class_exists(form):
+	possible_classes = open("class_list.txt", 'r')
+	for k, v in form.items():
+		if "required-class" in k or "taken-class" in k:
+			if any([v == name[:-1] for name in possible_classes]):
+				continue
+			else:
+				return v
 
 
 if __name__ == '__main__':

@@ -394,6 +394,13 @@
                 </div><!--pricing col end-->
             </div><!--pricing 4 col row end-->
             <div class="space-40"></div>
+            {% if bad_class %}
+            <div style="text-align:center">
+                <h3><strong>{{ bad_class }}</strong> is not an actual class</h3>
+                <h4>Did you misspell it? Proper format for classes is "CIS-110-001"</h4>
+            </div>
+            <br>
+            {% endif %}
             <div id="inputFields_1" class="row">
                 <div  class="col-md-12" style="text-align: center;">
                     <h4 class="heading-mini">What classes (if any) are you required to take this semester?</h4>

@@ -19,7 +19,9 @@ def get_section(course):
 
 def get_requirements(course):
 	requirements = course['fulfills_college_requirements']
-	return convert_to_ascii(requirements)
+	converted = convert_to_ascii(requirements)
+	print converted
+	return converted
 
 def get_meetings(course):
 	day_map = {}
@@ -41,8 +43,11 @@ def get_meetings(course):
 	return day_map
 
 def convert_to_ascii(string_list):
-	for i in range(0, len(string_list)):
-		string_list[i] = string_list[i].encode('ascii')
+	encoded_list = []
+	for i in range(0, len(string_list) - 1):
+		encoded_list.append(string_list[i].encode('ascii'))
+
+	return encoded_list
 
 def get_prereqs(course):
 	prereq_notes = course['prerequisite_notes']
