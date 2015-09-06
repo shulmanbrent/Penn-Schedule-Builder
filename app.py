@@ -6,26 +6,16 @@ from penn.registrar import Registrar
 app = Flask(__name__, static_url_path='/static')
 
 
+
 @app.route('/')
 def main():
 	return render_template("index.html")
 
-@app.route("/scheduler", methods=['POST'])
+@app.route("/scheduler", methods=['GET', 'POST'])
 def scheduler():
-	# courses = open("class_list.txt", 'r')
-	# depts = open("department_list.txt", 'r')
-	# classes = list()
-	# departments = list()
-	# r = Registrar('UPENN_OD_emFc_1001364', '6kl4eonkquheuti65e32qick6l')
-	# for course in courses:
-	# 	classes.append(course)
-	# for dep in depts:
-	# 	departments.append(dep)
-	# courses.close()
-	# depts.close()
-	# departments.sort()
+
 	if request.method == 'POST':
-		return "Hello World"
+		return render_template("restrictions.html")
 	else:
 		return render_template("scheduler.html")
 
