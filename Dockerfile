@@ -24,9 +24,7 @@ ADD . /data
 
 RUN pip install -r /data/requirements.txt
 
-EXPOSE 8888
 EXPOSE 5000
-EXPOSE 80
 
 # setup data volume
 VOLUME ["/data"]
