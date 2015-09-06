@@ -56,6 +56,16 @@ class TestCourseComparator(unittest.TestCase):
 		econ001002 = r.section('econ', '001', '002')
 		self.assertTrue(courseComparator.courses_overlap(econ001001, econ001002))
 
+	def test_filter_out_courses_where_prereq_not_met(self):
+		r = Registrar("UPENN_OD_emFc_1001364", "6kl4eonkquheuti65e32qick6l")
+		courses_taken = ["CIS 160", "CIS 110"]
+		cis121 = r.section('cis', '121', '001')
+		cis262 = r.section('cis', '262', '001')
+		all_courses = [cis121, cis262]
+		courses_eligble_for = courseComparator.filter_out_courses_where_prereq_not_met(all_courses, courses_taken)
+		self.assertEqual(len(courses_eligble_for), 1)
+
+
 if __name__ == '__main__':
     unittest.main()
 
