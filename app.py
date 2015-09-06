@@ -24,12 +24,52 @@ def scheduler():
 
 @app.route("/your_schedule", methods=['GET', 'POST'])
 def restrictions():
-	if request.method == 'POST':
+	if request.method != 'POST':
 		for (req, val) in request.form.items():
 			schedule_requirements[req] =  val
-		return render_template("your-schedule.html")
+		sample_data = [
+						{
+						"full_name": "NETS 212",
+						"requirement_filled": "Arts and Letters",
+						"meetings": {
+									"days": ["Tuesday", "Thursday"],
+									"tod": [12, 13.5]
+								  }
+						},
+						{
+						"full_name": "CIS 110",
+						"requirement_filled": "Physical World",
+						"meetings": {
+									"days": ["Monday", "Wednesday", "Friday"],
+									"tod": [11, 12]
+								  }
+						},
+						{
+						"full_name": "Span 130",
+						"requirement_filled": "Something",
+						"meetings": {
+									"days": ["Monday", "Tuesday", "Wednesday", "Friday"],
+									"tod": [12, 13]
+								  }
+						}
+					]
+		class_bd = class_by_days(sample_data)
+		print "about to render_template"
+		return render_template("your-schedule.html", data=sample_data, 	by_date=class_bd)
 	else:
 		return render_template("your-schedule.html")
+
+def class_by_days(data):
+	by_day = {"Monday": list(), "Tuesday": list(), "Wednesday": list(), "Thursday": list(), "Friday": list()}
+	for c in data:
+		for day in c["meetings"]["days"]:
+			print "MOFO"
+			by_day[day].append(c)
+	for day in by_day:
+		print "By day"
+		sorted(by_day[day], key=lambda c: c["meetings"]['tod'][0])
+	print "returning"
+	return by_day
 
 
 if __name__ == '__main__':
