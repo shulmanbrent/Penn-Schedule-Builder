@@ -65,12 +65,22 @@ class ScheduleBuilder(object):
 		for req in self.req_numbers:
 			print req
 			self.all_valid_courses = self.all_valid_courses + self.generator_to_list(self.find_all_courses(req, starts_after=starts_after))
-			
-		self.filter_course_days(self.all_valid_courses, no_class_days)
-		self.all_valid_courses.sort(cmp_course)
+		
+		if no_class_days is not None:
+			self.filter_course_days(self.all_valid_courses, no_class_days)
+		self.all_valid_courses.sort(self.cmp_course)
 
 
-	def cmp_course(course1, course2):
+	def cmp_course(self, course1, course2):
+
+		if len(course1['meetings']) == 0 and len(course2['meetings']):
+			return 0
+		elif len(course1['meetings']) == 0:
+			return 1
+		elif len(course2['meetings']) == 0:
+			return -1
+
+
 		start_time1 = course1['meetings'][0]['start_time_24']
 		start_time2 = course2['meetings'][0]['start_time_24']
 
@@ -104,6 +114,9 @@ class ScheduleBuilder(object):
 
 			# if course is not needed in requirements
 			all_course_reqs = CourseParser.get_requirements(course_to_add)
+
+			print all_course_reqs
+
 			if course_to_add not in all_course_reqs:
 				del all_courses[i]
 				continue
