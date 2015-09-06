@@ -102,7 +102,7 @@
                             <h4>Sector Requirements</h4>
                         </div>
                             <ul class="list-unstyled">
-                                <li><input type="checkbox" name="vehicle" placeholder="" value=""> Arts & Letters</li>
+                                <li><input type="checkbox" name="vehicle" placeholder="" value=""> Arts and Letters</li>
                                 <li><input type="checkbox" name="vehicle" placeholder="" value=""> Society and Social Structures</li>
                                 <li><input type="checkbox" name="vehicle" placeholder="" value=""> Histories and Traditions</li>
                                 <li><input type="checkbox" name="vehicle" placeholder="" value=""> Global and Cultural Studies</li>
@@ -118,11 +118,8 @@
                     <h4 class="heading-mini">Pricing tables 3 columns</h4>
                 </div>
             </div>
-              <select name="cars">
-                {% for class in classes %}
-                <option value="{{ class }}">{{ class }}</option>
-                {% endfor %}
-              </select>
+              <input id="course-name" type="text" placeholder="Course title">
+
             <div class="row">
                 <div class="col-md-4 margin-btm-20">
                     <div class="pricing-wrapper">
