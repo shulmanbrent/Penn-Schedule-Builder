@@ -3,6 +3,7 @@ import json
 import os
 import penncoursereview
 import jsonCourseParser as CourseParser
+import courseComparator
 
 class ScheduleBuilder(object):
 
@@ -84,43 +85,39 @@ class ScheduleBuilder(object):
 
 		return result
 
-	def find_schedule_recurse(self, req_course_list, req_numbers, selected_classes):
-		
-		finished = True
+	def find_schedule_recurse(self, all_courses, req_numbers, selected_classes):
 
-		for req in req_numbers:
-			if req_numbers[req] > 0:
-				finished = False
-				break
-
-		if finished:
+		if self.total_reqs_remaining(req_numbers) == 0:
 			return selected_classes
+		elif len(all_courses) == 0:
+			return False
 
-		for req in req_numbers:
-			if req_numbers[req] == 0:
+		for i in range(0, len(all_courses)):
+			course_to_add = all_courses[i]
+
+			# if course is not needed in requirements
+			all_course_reqs = CourseParser.get_requirements(course_to_add)
+			if course_to_add not in all_course_reqs:
+				del all_courses[i]
 				continue
 
-			valid_courses = req_course_list[req]
-			if len(valid_courses) == 0:
-				return False
-			
-			for i in range(0, len(req_course_list) - 1):
-				
-				course_to_add = req_course_list[req][i]
-				# first check if this class in in selected classes
-				if course_to_add in selected_classes:
-					continue
-					
-				selected_classes.append(course_to_add)
+			selected_classes.append(course_to_add)
+			all_courses = courseComparator.filter_out_courses_that_overlap(course_to_add, all_courses)
+
+			for req in all_course_reqs:
 				req_numbers[req] = req_numbers[req] - 1
-					
-				result = self.find_schedule_recurse(req_course_list, req_numbers, selected_classes)
 
-				if not result:
-					# Restore state from before
-					selected_classes.pop()
-					req_numbers[req] = req_numbers[req] + 1
-				else:
-					return selected_classes
+			return find_schedule_recurse(all_courses, req_numbers, selected_classes)
 
-		return False
+	def total_reqs_remaining(self, req_numbers):
+		total = 0
+		for req in req_numbers:
+			total = total + req_numbers[req]
+
+		return total
+
+	def valid_req(course, req_numbers):
+		is_valid = False
+
+		for req in req_numbers:
+			if req_numbers[req] > 0 and req ==
