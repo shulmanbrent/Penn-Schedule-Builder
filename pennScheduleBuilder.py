@@ -1,7 +1,7 @@
 from penn.registrar import Registrar
 import json
 import os
-import penncoursereview
+# import penncoursereview
 import jsonCourseParser as CourseParser
 import courseComparator
 import pdb
@@ -63,11 +63,19 @@ class ScheduleBuilder(object):
 		self.all_valid_courses = []
 
 		for req in self.req_numbers:
+			print req
 			self.all_valid_courses = self.all_valid_courses + self.generator_to_list(self.find_all_courses(req, starts_after=starts_after))
-		
+		print "No class days"
 		if no_class_days is not None:
-			self.filter_course_days(self.all_valid_courses, no_class_days)
+			print 'befroe'
+			no_class_days = CourseParser.convert_to_ascii(no_class_days)
+			print "middle"
+			print self.all_valid_courses
+			self.all_valid_courses = self.filter_course_days(self.all_valid_courses, no_class_days)
+			print "after"
 		self.all_valid_courses.sort(self.cmp_course)
+		print 'double smeag'
+		return True
 
 
 	def cmp_course(self, course1, course2):
@@ -90,10 +98,15 @@ class ScheduleBuilder(object):
 			return 0
 
 	def filter_course_days(self, courses, no_class_days):
-		for i in range(0, len(courses) - 1):
-			current_course = courses[i]
-			if courseComparator.course_meets_on_days(current_course, no_class_days):
-				del current_course[i]
+		correct_courses = list()
+		for i, course in enumerate(courses):
+
+			if courseComparator.course_meets_on_days(course, no_class_days):
+				continue
+			else:
+				correct_courses.append(course)
+				
+		return correct_courses
 
 	def find_schedule(self):
 

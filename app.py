@@ -3,10 +3,13 @@ from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash
 from penn.registrar import Registrar
 import flask
+from pennScheduleBuilder import ScheduleBuilder
+from jsonCourseParser import get_meetings
 
 app = Flask(__name__, static_url_path='/static')
 
 schedule_requirements = dict()
+sb = ScheduleBuilder()
 
 flask.debug= True
 
@@ -26,7 +29,8 @@ def scheduler():
 		if bad_class:
 			return render_template("scheduler.html", bad_class=bad_class)
 		for (req, val) in request.form.items():
-			schedule_requirements[req] =  val
+			if val != u'0' and ('required-class' not in req) and ('taken-class' not in req):
+				schedule_requirements[req] =  int(val)
 		return render_template("restrictions.html")
 	else:
 		return render_template("scheduler.html")
@@ -34,8 +38,24 @@ def scheduler():
 @app.route("/your_schedule", methods=['GET', 'POST'])
 def restrictions():
 	if request.method == 'POST':
+
+
+		schedule_requirements
+		sb.set_requirements(schedule_requirements)
+		dotw = list()
 		for (req, val) in request.form.items():
-			schedule_requirements[req] =  val
+			if req == 'dotw':
+				dotw.append(val)
+		
+		sb.enter_preferences(no_class_days=dotw)
+		schedule = sb.find_schedule()
+		my_data = list()
+		for i, course in enumerate(schedule):
+			temp = dict()
+			temp['full_name'] = course['meetings'][0]['section_id_normalized']
+			temp['meetings'] = get_meetings(course)
+			my_data.append(temp)
+		print my_data
 		sample_data = [
 						{
 						"full_name": "NETS 212",
@@ -62,22 +82,21 @@ def restrictions():
 								  }
 						}
 					]
-		class_bd = class_by_days(sample_data)
+		class_bd = class_by_days(my_data)
+		# print class_bd
 		print "about to render_template"
-		return render_template("your-schedule.html", data=sample_data, 	by_date=class_bd)
+		return render_template("your-schedule.html", data=my_data, by_date=class_bd)
 	else:
-		return render_template("your-schedule.html")
+		return render_template("index.html")
 
 def class_by_days(data):
-	by_day = {"Monday": list(), "Tuesday": list(), "Wednesday": list(), "Thursday": list(), "Friday": list()}
+	by_day = {"M": list(), "T": list(), "W": list(), "R": list(), "F": list()}
 	for c in data:
-		for day in c["meetings"]["days"]:
-			print "MOFO"
+		for day, time in c["meetings"].items():
 			by_day[day].append(c)
 	for day in by_day:
-		print "By day"
-		sorted(by_day[day], key=lambda c: c["meetings"]['tod'][0])
-	print "returning"
+		sorted(by_day[day], key=lambda c: c["meetings"].itervalues().next()[0][0])
+	# print "rturning"
 	return by_day
 
 def class_exists(form):

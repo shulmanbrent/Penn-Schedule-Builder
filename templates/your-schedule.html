@@ -31,54 +31,54 @@
 
                                 </tr>
                                 <tr>
-                                <td valign=top>{% for c in by_date.Monday %}
-                                    {{ c.meetings.tod[0] }}
+                                <td valign=top>{% for c in by_date.M %}
+                                    {{ c.meetings.M[0][0] }}
                                     <div style="
                                         height: 40px;
                                         background-color: thistle;
                                     ">{{ c.full_name }}
                                     </div>
-                                    {{ c.meetings.tod[1] }}
+                                    {{ c.meetings.M[0][1] }}
                                     <br>
                                     {% endfor %}
                                 </td>
-                                <td valign=top>{% for c in by_date.Tuesday %}
-                                    {{ c.meetings.tod[0] }}
+                                <td valign=top>{% for c in by_date.T %}
+                                    {{ c.meetings.T[0][0] }}
                                     <div style="
                                         height: 40px;
                                         background-color: thistle;
                                     ">{{ c.full_name }}
                                     </div>
-                                    {{ c.meetings.tod[1] }} <br>
+                                    {{ c.meetings.T[0][1] }} <br>
                                     {% endfor %}</td>
-                                <td valign=top>{% for c in by_date.Wednesday %}
-                                    {{ c.meetings.tod[0] }}
+                                <td valign=top>{% for c in by_date.W %}
+                                    {{ c.meetings.W[0][0] }}
                                     <div style="
                                         height: 40px;
                                         background-color: thistle;
                                     ">{{ c.full_name }}
                                     </div>
-                                    {{ c.meetings.tod[1] }}<br>
-                                    {% endfor %}</td>
-
-                                 <td valign=top>{% for c in by_date.Thursday %}
-                                    {{ c.meetings.tod[0] }}
-                                    <div style="
-                                        height: 40px;
-                                        background-color: thistle;
-                                    ">{{ c.full_name }}
-                                    </div>
-                                    {{ c.meetings.tod[1] }}<br>
+                                    {{ c.meetings.W[0][1] }}<br>
                                     {% endfor %}</td>
 
-                                 <td valign=top>{% for c in by_date.Friday %}
-                                    {{ c.meetings.tod[0] }}
+                                 <td valign=top>{% for c in by_date.R %}
+                                    {{ c.meetings.R[0][0] }}
+                                    <div style="
+                                        height: 40px;
+                                        background-color: thistle;
+                                    ">{{ c.full_name }}
+                                    </div>
+                                    {{ c.meetings.R[0][1] }}<br>
+                                    {% endfor %}</td>
+
+                                 <td valign=top>{% for c in by_date.F %}
+                                    {{ c.meetings.F[0][0] }}
                                     <div style="
                                         height: 40px;
                                         background-color: thistle;
                                     ">{{ c.full_name }}
                                     </div> 
-                                    {{ c.meetings.tod[1] }}<br>
+                                    {{ c.meetings.F[0][1] }}<br>
                                     {% endfor %}
                                 </td>
                                     </tr></table></td></tr></table>
@@ -90,11 +90,15 @@
                     <div class="portfolio-side-bar">
                         <strong>Your courses are:</strong><br>
                         {% for c in data %}
-                        <p><strong>{{ c.full_name }}:</strong> {{ c.meetings.tod[0] }}-{{ c.meetings.tod[1] }}</p>
+                        <p><strong>{{ c.full_name }}:</strong></p>
+                        <p>{% for  k,v in c.meetings.items() %}
+                                {{ k }}: {{ v[0][0] }}-{{ v[0][1] }}
+                            {% endfor %}
+                            </p><br>
                         {% endfor %}
-                        <br>
+                        
                         <p>
-                            <a href="#" class="btn btn-radius theme-btn-color">Visit Project</a>
+                            <a href="http://github.com/shulmanbrent" class="btn btn-radius theme-btn-color">Visit out Github</a>
                         </p>
                     </div>
                 </div>
