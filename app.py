@@ -14,6 +14,10 @@ def main():
 def scheduler():
 	return render_template("scheduler.html")
 
+@app.route("/restrictions")
+def restrictions():
+	return render_template("restrictions.html")
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
