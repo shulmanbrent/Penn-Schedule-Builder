@@ -1,10 +1,14 @@
 from penn.registrar import Registrar
 import json
+import os
+import penncoursereview
+import jsonCourseParser as CourseParser
 
 class ScheduleBuilder(object):
 
 	def __init__(self):
 		self.registrar = Registrar('UPENN_OD_emFc_1001364', '6kl4eonkquheuti65e32qick6l')
+		os.environ['PCR_AUTH_TOKEN']='kdutFhMEbUaKdvQbcRKszEiwZeThFs'
 
 
 	def set_requirements(self, reqs):
@@ -33,6 +37,14 @@ class ScheduleBuilder(object):
 			search_params['starts_at_or_after_hour'] = starts_after
 
 		all_courses = registrar(search_params)
+
+	# def add_ratings(courses):
+	# 	for course in courses:
+	# 		course_info = penncoursereview(CourseParser.get_course_department(course), CourseParser.get_course_number(course), \
+	# 			CourseParser.get_section(course))
+
+	# 		difficulty_rating = course_info./
+
 
 	def enter_requirements(self, req_numbers, starts_after=None, ends_before=None, no_class_days=None, difficulty_limit=None, work_limit=None, lunch_break=None):
 		self.req_classes = {}

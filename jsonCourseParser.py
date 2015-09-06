@@ -13,6 +13,10 @@ def get_credits(course):
 	credits_parsed = credits[:3]
 	return float(credits_parsed)
 
+def get_section(course):
+	section = course['section_number']
+	return section.encode('ascii')
+
 def get_meetings(course):
 	day_map = {}
 	meetings = course['meetings']
