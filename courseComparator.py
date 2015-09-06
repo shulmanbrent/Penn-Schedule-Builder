@@ -30,10 +30,10 @@ def course_times_overlap(first_course_time, second_course_time):
 	first_course_end = first_course_time[1]
 	second_course_start = second_course_time[0]
 	second_course_end = second_course_time[1]
-	if first_course_start > second_course_start and \
+	if first_course_start >= second_course_start and \
 		first_course_start < second_course_end:
 		return True
-	if second_course_start > first_course_start and \
+	if second_course_start >= first_course_start and \
 		second_course_start < first_course_end:
 		return True
 	return False
@@ -55,11 +55,10 @@ def course_meeting_times_overlap(first_course, second_course, days_overlapped):
 def courses_overlap(first_course, second_course):
 	if courses_are_same(first_course, second_course):
 		return True
-	else:
-		shared_days = shared_meeting_days(first_course, second_course)
-		if len(shared_days) == 0:
-			return False
-		return course_meeting_times_overlap(first_course, second_course, shared_days)
+	shared_days = shared_meeting_days(first_course, second_course)
+	if len(shared_days) == 0:
+		return False
+	return course_meeting_times_overlap(first_course, second_course, shared_days)
 
 
 def filter_out_courses_that_overlap(first_course, courses_to_compare):
