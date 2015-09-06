@@ -17,6 +17,10 @@ def get_section(course):
 	section = course['section_number']
 	return section.encode('ascii')
 
+def get_requirements(course):
+	requirements = course['fulfills_college_requirements']
+	return convert_to_ascii(requirements)
+
 def get_meetings(course):
 	day_map = {}
 	meetings = course['meetings']
@@ -24,7 +28,6 @@ def get_meetings(course):
 	for meeting in meetings:
 
 		days = list(meeting['meeting_days'].encode('ascii'))
-		convert_to_ascii(days)
 
 		start_time = meeting['start_time_24']
 		end_time = meeting['end_time_24']
