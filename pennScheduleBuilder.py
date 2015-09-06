@@ -63,7 +63,6 @@ class ScheduleBuilder(object):
 		self.all_valid_courses = []
 
 		for req in self.req_numbers:
-			print req
 			self.all_valid_courses = self.all_valid_courses + self.generator_to_list(self.find_all_courses(req, starts_after=starts_after))
 		
 		if no_class_days is not None:
@@ -79,7 +78,6 @@ class ScheduleBuilder(object):
 			return 1
 		elif len(course2['meetings']) == 0:
 			return -1
-
 
 		start_time1 = course1['meetings'][0]['start_time_24']
 		start_time2 = course2['meetings'][0]['start_time_24']
@@ -98,7 +96,9 @@ class ScheduleBuilder(object):
 				del current_course[i]
 
 	def find_schedule(self):
+
 		result = self.find_schedule_recurse(self.all_valid_courses, self.req_numbers, [])
+
 
 		return result
 
@@ -109,25 +109,27 @@ class ScheduleBuilder(object):
 		elif len(all_courses) == 0:
 			return False
 
-		for i in range(0, len(all_courses)):
+		for i in range(0, len(all_courses) - 1):
+
+			print i
 			course_to_add = all_courses[i]
 
 			# if course is not needed in requirements
 			all_course_reqs = CourseParser.get_requirements(course_to_add)
 
-			print all_course_reqs
-
 			if course_to_add not in all_course_reqs:
-				del all_courses[i]
 				continue
 
 			selected_classes.append(course_to_add)
-			all_courses = courseComparator.filter_out_courses_that_overlap(course_to_add, all_courses)
+
+			courses_after_selected = all_courses[i:]
+
+			all_courses = courseComparator.filter_out_courses_that_overlap(course_to_add, courses_after_selected)
 
 			for req in all_course_reqs:
 				req_numbers[req] = req_numbers[req] - 1
 
-			return find_schedule_recurse(all_courses, req_numbers, selected_classes)
+			return find_schedule_recurse(courses_after_selected, req_numbers, selected_classes)
 
 	def total_reqs_remaining(self, req_numbers):
 		total = 0
@@ -145,9 +147,3 @@ class ScheduleBuilder(object):
 			num = num + 1
 
 		return all_courses_list
-
-	# def valid_req(course, req_numbers):
-	# 	is_valid = False
-
-	# 	for req in req_numbers:
-	# 		if req_numbers[req] > 0 and req ==
