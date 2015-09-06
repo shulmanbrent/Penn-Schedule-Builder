@@ -395,7 +395,7 @@
             </div><!--pricing 4 col row end-->
             <div class="space-40"></div>
             
-            <div id="inputFields" class="row">
+            <div id="inputFields_1" class="row">
                 <div  class="col-md-12" style="text-align: center;">
                     <h4 class="heading-mini">What classes (if any) are you required to take this semester?</h4>
                 </div>
@@ -414,6 +414,19 @@
                    $("#first_form").submit();
                 }
             </script>
+
+            <div id="inputFields_2" class="row">
+                <div  class="col-md-12" style="text-align: center;">
+                    <h4 class="heading-mini">What classes have you taken in the past?</h4>
+                </div>
+                    <div style="text-align: center;">
+                        <input type="text" name="taken-class-1" placeholder="Type a class you have taken" form="first_form" class="need_class_input">
+                    </div>
+            </div>
+            <div style="text-align: center;">
+                <button name="data" type="button" onclick="addQuestion2()">+</button>
+            </div>
+
 
             <p><center><a onclick='submitDetailsForm()' href="#" class="btn theme-btn-default btn-lg" style="background-color:#000;color:#FFF;size:large">Next &#8594;</a></p></center><div class="space-40"></div>
             

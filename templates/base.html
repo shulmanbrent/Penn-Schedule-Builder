@@ -136,5 +136,10 @@ function addQuestion(){
    limit++;   
    $("#first_form").append("<div style='text-align: center;'><input type='text' name='required-class-" + limit + "' placeholder='Type a class you need to take' class='need_class_input'></div>"); 
 }</script>
+    <script type="text/javascript">var limit = 1;
+    function addQuestion2(){
+       limit++;   
+       $("#inputFields_2").append("<div style='text-align: center;'><input type='text' name='taken-class-" + limit + "' placeholder='Type a class you have taken' form='first_form' class='need_class_input'></div>"); 
+    }</script>
     </body>
 </html>
